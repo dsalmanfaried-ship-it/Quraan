@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تلاوتي – تدريب التلاوة والحفظ</title>
+<meta name="description" content="تطبيق ويب لتدريب التلاوة والحفظ: يتعرّف على السورة من صوتك ويتابعك كلمة بكلمة مع أحكام التجويد.">
+<meta name="theme-color" content="#243a8c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="data/quran-uthmani.txt" as="fetch" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<div class="wrap">
+<h1>تلاوتي</h1><p class="sub">اتلُ بصوتك، والتطبيق يتعرّف على السورة ويتابعك كلمة بكلمة.</p>
+<section id="v-rec">
+ <div class="streak" id="streak"></div>
+ <div class="card">
+  <div class="seg" id="am"><button data-a="1" class="on">🧠 تعرّف تلقائي</button><button data-a="0">اختيار يدوي</button></div>
+  <div class="bar" id="manual" hidden style="margin-top:10px"><select id="sel" class="sel"></select><select id="ay" class="sel"></select></div>
+  <div class="bar ctl" style="margin-top:12px"><button class="btn main" id="mic" disabled>🎙️ ابدأ التلاوة</button><div class="wave"><i></i><i></i><i></i><i></i><i></i></div><button class="btn" id="reset">إعادة</button>
+   <div class="seg" id="mode"><button data-m="read" class="on">قراءة</button><button data-m="hide">حفظ</button></div></div>
+  <div class="prog"><i id="pb"></i></div>
+  <div class="stats"><span>صحيحة: <b id="sOk">٠</b></span><span>أخطاء: <b id="sMiss">٠</b></span><span>الإجمالي: <b id="sAll">٠</b></span></div>
+  <div class="shd" id="shd" hidden></div><div class="text" id="text"><div class="empty">جارٍ تحميل المصحف…</div></div><div class="hint" id="hint" hidden></div><div class="res" id="res" aria-live="polite"></div><div class="mis" id="mis"></div><div class="msg" id="msg" aria-live="polite"></div>
+ </div>
+ <div class="card" id="panel"></div><div class="legend" id="legend"></div>
+</section>
+<section id="v-lib" hidden><input id="q" placeholder="🔍 ابحث عن سورة"><div id="lib"></div></section>
+<section id="v-tj" hidden><div id="tj"></div></section><section id="v-prog" hidden><div id="prog"></div></section>
+<section id="v-set" hidden><div class="card">
+ <h3>المظهر</h3><div class="seg" id="th"><button data-t="auto">تلقائي</button><button data-t="light">فاتح</button><button data-t="dark">داكن</button></div>
+ <h3>حجم الخط <small id="fv"></small></h3><input type="range" id="fsr" min="20" max="54" step="2">
+ <h3>الهدف اليومي <small id="gv"></small></h3><input type="range" id="gr" min="20" max="500" step="10">
+ <label class="chk"><input type="checkbox" id="tjc"> تلوين أحكام التجويد تحت الكلمات</label>
+ <button class="btn" id="wipe">مسح كل بياناتي</button></div><div class="card"><h3 style="margin-top:0">عن النص</h3><p class="msg" style="margin:0">نص المصحف من <a href="https://tanzil.net" target="_blank" rel="noopener">مشروع تنزيل (Tanzil)</a> بالرسم العثماني، الإصدار ١٫١، برخصة Creative Commons Attribution 3.0. حقوق النشر © 2007–2026 Tanzil Project. يُنسخ النص كما هو دون تغيير مع ذكر المصدر. يعرض التطبيق الكلمات فقط ويخفي علامات الأحزاب والسجدة وبسملة أوائل السور.</p></div></section>
+</div>
+<nav id="nav"><button data-v="rec" class="on"><span>🎧</span>تلاوة</button><button data-v="lib"><span>📖</span>السور</button><button data-v="tj"><span>🎓</span>التجويد</button><button data-v="prog"><span>📊</span>تقدّمي</button><button data-v="set"><span>⚙️</span>إعدادات</button></nav><div class="sheet" id="sheet" hidden><div class="sh-card"><button class="x" aria-label="إغلاق">✕</button><div id="shc"></div></div></div>
+</body>
+</html>
